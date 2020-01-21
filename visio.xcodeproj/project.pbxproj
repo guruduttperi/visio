@@ -13,6 +13,8 @@
 		73B350F023D74F21007FA753 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73B350EE23D74F21007FA753 /* Main.storyboard */; };
 		73B350F223D74F23007FA753 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B350F123D74F23007FA753 /* Assets.xcassets */; };
 		73B350F523D74F23007FA753 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73B350F323D74F23007FA753 /* LaunchScreen.storyboard */; };
+		73B350FF23D77401007FA753 /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 73B350FE23D77401007FA753 /* SqueezeNet.mlmodel */; };
+		73B3510023D7767B007FA753 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 73B350FC23D76C36007FA753 /* Inceptionv3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		73B350F123D74F23007FA753 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73B350F423D74F23007FA753 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73B350F623D74F23007FA753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73B350FC23D76C36007FA753 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = SOURCE_ROOT; };
+		73B350FE23D77401007FA753 /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		73B350E723D74F21007FA753 /* visio */ = {
 			isa = PBXGroup;
 			children = (
+				73B350FE23D77401007FA753 /* SqueezeNet.mlmodel */,
+				73B350FC23D76C36007FA753 /* Inceptionv3.mlmodel */,
 				73B350E823D74F21007FA753 /* AppDelegate.swift */,
 				73B350EA23D74F21007FA753 /* SceneDelegate.swift */,
 				73B350EC23D74F21007FA753 /* ViewController.swift */,
@@ -138,7 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73B3510023D7767B007FA753 /* Inceptionv3.mlmodel in Sources */,
 				73B350ED23D74F21007FA753 /* ViewController.swift in Sources */,
+				73B350FF23D77401007FA753 /* SqueezeNet.mlmodel in Sources */,
 				73B350E923D74F21007FA753 /* AppDelegate.swift in Sources */,
 				73B350EB23D74F21007FA753 /* SceneDelegate.swift in Sources */,
 			);

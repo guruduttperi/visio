@@ -8,8 +8,9 @@
 
 import UIKit
 import AVKit
+import Vision
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     @IBOutlet weak var cameraView: UIView!
     
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
         // Getting Camera Output
         
         let cameraOutput = AVCaptureVideoDataOutput()
+        cameraOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "video"))
         captureSession.addOutput(cameraOutput)
         
         
@@ -47,12 +49,46 @@ class ViewController: UIViewController {
         let cameraPreview = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraPreview.frame = CGRect(x:0, y:0, width: cameraView.frame.size.width, height: cameraView.frame.size.height)
         cameraView.layer.addSublayer(cameraPreview)
-        
-        
-        
+    
         
     }
 
+    // Capturing Camera Frames
+    private func cameraOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection){
+        
+        //print(sampleBuffer)
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return}
+        
+        detectImage(pixelBuffer: pixelBuffer)
+        
+    }
+    
+    
+    
+    func detectImage(pixelBuffer: CVPixelBuffer){
+        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else{
+            return
+        }
+        
+        let request = VNCoreMLRequest(model: model){
+            (request, error) in
+            guard let results  = request.results as? [VNClassificationObservation] else {return}
+            guard let firstResult = results.first else {return}
+            
+            print(firstResult.identifier)
+             DispatchQueue.main.async {
+                self.resultLabel.text = firstResult.identifier
+            }
+            
+        }
+        
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        
+        DispatchQueue.global().async {
+            try? handler.perform([request])
+        }
+    }
+    
 
 }
 
